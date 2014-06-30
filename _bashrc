@@ -5,7 +5,6 @@ alias open='nemo ${PWD}'
 alias offtouch='sudo rmmod psmouse'
 alias ontouch='sudo modprobe psmouse'
 alias capture='gnome-screenshot -a'
-alias sql='mysql -h localhost -u wolfhong -p'
 alias lls='ls -al'
 
 # Set my editor and git editor
