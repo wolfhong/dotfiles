@@ -11,9 +11,12 @@ set hlsearch
 set foldmethod=indent
 set foldlevel=99
 
-map <F4> :NERDTreeToggle<CR>
-map <c-n> :tabnext<CR>
-map <c-p> :tabprevious<CR>
+nmap <F4> :NERDTreeToggle<CR>
+nmap <C-n> :tabnext<CR>
+nmap <C-p> :tabprevious<CR>
+nmap zp :MBEbb<CR>
+nmap zn :MBEbf<CR>
+nmap zm I# -*- coding: utf-8 -*-<CR>
 
 "Set utf-8 encoding
 set encoding=utf8
