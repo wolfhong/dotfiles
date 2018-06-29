@@ -1,3 +1,5 @@
+"execute pathogen#infect()
+"execute pathogen#helptags()
 filetype off 
 call pathogen#infect()
 call pathogen#helptags()
@@ -5,18 +7,24 @@ filetype on
 
 colorscheme vividchalk
 
-set number
-set hlsearch
+""""""""""""""""""""""""""""""""""""""""
+"  added by wolfhong
+""""""""""""""""""""""""""""""""""""""""
+
+"Gundo requires Vim to be compiled with Python 2.4+
+"nmap <F2> :GundoToggle<CR>
+nmap <F3> :TaskList<CR>
+nmap <F4> :NERDTreeToggle<CR>
+" <F5> bind to pep8/pycodestyle
+"
+nmap <C-n> :tabnext<CR>
+nmap <C-p> :tabprevious<CR>
+nmap zm I# -*- coding: utf-8 -*-<CR>
+"nmap zp :MBEbb<CR>
+"nmap zn :MBEbf<CR>
 
 set foldmethod=indent
 set foldlevel=99
-
-nmap <F4> :NERDTreeToggle<CR>
-nmap <C-n> :tabnext<CR>
-nmap <C-p> :tabprevious<CR>
-nmap zp :MBEbb<CR>
-nmap zn :MBEbf<CR>
-nmap zm I# -*- coding: utf-8 -*-<CR>
 
 "Set utf-8 encoding
 set encoding=utf8
@@ -221,11 +229,15 @@ function! Startup()
         NERDTree
     end
     
-
     "Let tagbar auto-start
     Tagbar
 endfunction
 
-
 "Python flake8 check
 "autocmd FileType python map <buffer> zfp :call Flake8()<CR>
+"
+
+"Use rainbow
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+
+"
