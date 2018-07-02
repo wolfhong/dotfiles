@@ -30,13 +30,15 @@ Plug 'https://github.com/mbbill/undotree.git'
 Plug 'https://github.com/fs111/pydoc.vim.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
 Plug 'https://github.com/vim-syntastic/syntastic.git'
-"Plug 'https://github.com/vim-scripts/pep8.git'
-"Plug 'https://github.com/mitechie/pyflakes-pathogen.git'
+Plug 'https://github.com/vim-scripts/pep8.git'
+Plug 'https://github.com/mitechie/pyflakes-pathogen.git'
 "Plug 'https://github.com/davidhalter/jedi-vim.git' #Vim requires compiled with py
 "Plug 'https://github.com/python-mode/python-mode.git' #Vim requires py
 
 " for golang
 "Plug 'https://github.com/fatih/vim-go.git', { 'do': ':GoUpdateBinaries' }
+Plug 'https://github.com/fatih/vim-go.git'
+Plug 'https://github.com/Blackrush/vim-gocode.git'
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""
@@ -44,12 +46,14 @@ call plug#end()
 "For me, use pathogen.vim instead of plug.vim
 "execute pathogen#infect()
 "execute pathogen#helptags()
-"filetype off 
 "call pathogen#infect()
 "call pathogen#helptags()
 filetype on
 
-colorscheme vividchalk
+"colorscheme vividchalk
+"colorscheme distinguished
+"colorscheme pychimp
+colorscheme monokai
 
 """"""""""""""""""""""""""""""""""""""""
 "  for hot-key mapping
@@ -67,13 +71,18 @@ nmap <F4> :NERDTreeToggle<CR>
 
 nmap <C-n> :tabnext<CR>
 nmap <C-p> :tabprevious<CR>
+
 nmap zm I# -*- coding: utf-8 -*-<CR>
+"nmap zj :RopeGotoDefinition<CR>
+"nmap zr :RopeRename<CR>
+
 "nmap zp :MBEbb<CR>
 "nmap zn :MBEbf<CR>
 
 "vs for vsplit windows
 "sp for split windows
 
+set clipboard=unnamed
 set foldmethod=indent
 set foldlevel=99
 
@@ -216,6 +225,7 @@ endif
 
 "Enable filetype plugins
 filetype plugin indent on
+filetype plugin on
 
 "Set auto read when files outside changed
 set autoread
@@ -286,7 +296,11 @@ endfunction
 
 "Python flake8 check
 "autocmd FileType python map <buffer> zfp :call Flake8()<CR>
-"
+
+
+"""""""""""""""""""""""""""""""""""""
+" plugins config
+"""""""""""""""""""""""""""""""""""""
 
 "Use rainbow
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
@@ -308,6 +322,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+"syntastic for python
+let g:syntastic_python_checker_args = "--max-line-length=90"
+let g:syntastic_python_checker_args = "pep8_max_line_length=90"
+
 
 "Use vim-markdown
 let g:vim_markdown_folding_style_pythonic = 1
@@ -322,3 +340,6 @@ if has("persistent_undo")
   set undodir=~/.undodir/
   set undofile
 endif
+
+"golang required
+set nocompatible              " be iMproved, required
