@@ -1,6 +1,7 @@
 ### Usage
 
 Rename this coderepo into `.vim`.
+Then open vim and run `:PlugInstall` to install all plugins using `autoload/plug.vim`.
 
 ### 问题
 
@@ -27,9 +28,8 @@ TODO: pyflakes-pathogen 在windows-10上的cmder上不生效
 
 * surround: cs命令可以全局替换标签/双引号等对应的符号
 * minibufexpl: 一个界面上有多标签，跟tabedit功能重复了
-* command-t: requires Vim to be compiled with ruby
-* ack:
-* gundo: show undo-list, gundo requires Vim to be compiled with py2.4+
 * makegreen: test for ruby
-* pyflakes-vim: requires Vim to be compiled with Python
-* ropevim: requires Python2.7, python语法提示
+* ack:
+* command-t: **requires ruby**
+* gundo: **requires y2.4+**
+* ropevim: **requires py2.7**, python语法提示

@@ -1,8 +1,44 @@
+"use plug.vim to manage plugins
+"https://github.com/junegunn/vim-plug
+filetype off
+call plug#begin()
+
+Plug 'https://github.com/tpope/vim-fugitive.git'
+Plug 'https://github.com/tpope/vim-git.git'
+Plug 'https://github.com/ervandew/supertab.git'
+" Plug 'https://github.com/fholgado/minibufexpl.vim.git'
+" Plug 'https://github.com/mileszs/ack.vim.git'
+" Plug 'https://github.com/wincent/Command-T.git'
+" Plug 'https://github.com/sjl/gundo.vim.git'
+Plug 'https://github.com/msanders/snipmate.vim.git'
+Plug 'https://github.com/vim-scripts/TaskList.vim.git'
+Plug 'https://github.com/vim-scripts/The-NERD-tree.git'
+Plug 'https://github.com/luochen1990/rainbow.git'
+Plug 'https://github.com/tpope/vim-repeat.git'
+Plug 'https://github.com/tpope/vim-surround.git'
+Plug 'https://github.com/tpope/vim-commentary.git'
+Plug 'https://github.com/plasticboy/vim-markdown.git'
+" for undo/redo command
+Plug 'mbbill/undotree'
+
+" for python
+Plug 'https://github.com/fs111/pydoc.vim.git'
+Plug 'https://github.com/alfredodeza/pytest.vim.git'
+Plug 'https://github.com/vim-scripts/pep8.git'
+Plug 'https://github.com/mitechie/pyflakes-pathogen.git'
+
+" for golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+call plug#end()
+"""""""""""""""""""""""""""""""""""""
+
+"For me, use pathogen.vim instead of plug.vim
 "execute pathogen#infect()
 "execute pathogen#helptags()
-filetype off 
-call pathogen#infect()
-call pathogen#helptags()
+"filetype off 
+"call pathogen#infect()
+"call pathogen#helptags()
 filetype on
 
 colorscheme vividchalk
@@ -11,17 +47,22 @@ colorscheme vividchalk
 "  added by wolfhong
 """"""""""""""""""""""""""""""""""""""""
 
-"Gundo requires Vim to be compiled with Python 2.4+
-"nmap <F2> :GundoToggle<CR>
+" undo/redo map keys
+nmap <F2> :UndotreeToggle<CR>
+" show undo-list
 nmap <F3> :TaskList<CR>
+" show directory
 nmap <F4> :NERDTreeToggle<CR>
 " <F5> bind to pep8/pycodestyle
-"
+
 nmap <C-n> :tabnext<CR>
 nmap <C-p> :tabprevious<CR>
 nmap zm I# -*- coding: utf-8 -*-<CR>
 "nmap zp :MBEbb<CR>
 "nmap zn :MBEbf<CR>
+
+"vs for vsplit windows
+"sp for split windows
 
 set foldmethod=indent
 set foldlevel=99
@@ -158,7 +199,10 @@ endfunction
 " Common Configurations               "
 """""""""""""""""""""""""""""""""""""""
 "Enable syntax hightlighting
-syntax on
+if &t_Co > 1
+  syntax on
+  syntax enable
+endif
 
 "Enable filetype plugins
 filetype plugin indent on
@@ -240,4 +284,16 @@ endfunction
 "Use rainbow
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
-"
+"Use vim-markdown
+let g:vim_markdown_folding_style_pythonic = 1
+let g:vim_markdown_override_foldtext = 0
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_toml_frontmatter = 1
+let g:vim_markdown_json_frontmatter = 1
+let g:vim_markdown_math = 1
+
+"Use undotree
+if has("persistent_undo")
+  set undodir=~/.undodir/
+  set undofile
+endif
