@@ -3,32 +3,40 @@
 filetype off
 call plug#begin()
 
+" git
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/tpope/vim-git.git'
+" press <Tab> to auto-complete
 Plug 'https://github.com/ervandew/supertab.git'
-" Plug 'https://github.com/fholgado/minibufexpl.vim.git'
-" Plug 'https://github.com/mileszs/ack.vim.git'
-" Plug 'https://github.com/wincent/Command-T.git'
-" Plug 'https://github.com/sjl/gundo.vim.git'
+" auto-complete for multiple languages, eg, coding def<Tab> 
 Plug 'https://github.com/msanders/snipmate.vim.git'
+
+"Plug 'https://github.com/fholgado/minibufexpl.vim.git'
+"Plug 'https://github.com/mileszs/ack.vim.git'
+"Plug 'https://github.com/wincent/Command-T.git'
+"Plug 'https://github.com/sjl/gundo.vim.git'
+"Plug 'https://github.com/tpope/vim-repeat.git'
+"Plug 'https://github.com/tpope/vim-surround.git'
+"Plug 'https://github.com/tpope/vim-commentary.git'
+
 Plug 'https://github.com/vim-scripts/TaskList.vim.git'
 Plug 'https://github.com/vim-scripts/The-NERD-tree.git'
 Plug 'https://github.com/luochen1990/rainbow.git'
-Plug 'https://github.com/tpope/vim-repeat.git'
-Plug 'https://github.com/tpope/vim-surround.git'
-Plug 'https://github.com/tpope/vim-commentary.git'
 Plug 'https://github.com/plasticboy/vim-markdown.git'
 " for undo/redo command
-Plug 'mbbill/undotree'
+Plug 'https://github.com/mbbill/undotree.git'
 
 " for python
 Plug 'https://github.com/fs111/pydoc.vim.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
-Plug 'https://github.com/vim-scripts/pep8.git'
-Plug 'https://github.com/mitechie/pyflakes-pathogen.git'
+Plug 'https://github.com/vim-syntastic/syntastic.git'
+"Plug 'https://github.com/vim-scripts/pep8.git'
+"Plug 'https://github.com/mitechie/pyflakes-pathogen.git'
+"Plug 'https://github.com/davidhalter/jedi-vim.git' #Vim requires compiled with py
+"Plug 'https://github.com/python-mode/python-mode.git' #Vim requires py
 
 " for golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'https://github.com/fatih/vim-go.git', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""
@@ -44,9 +52,10 @@ filetype on
 colorscheme vividchalk
 
 """"""""""""""""""""""""""""""""""""""""
-"  added by wolfhong
+"  for hot-key mapping
 """"""""""""""""""""""""""""""""""""""""
-
+" syntastic reset, or use `:lclose` instead.
+nmap <F1> :SyntasticReset<CR>
 " undo/redo map keys
 nmap <F2> :UndotreeToggle<CR>
 " show undo-list
@@ -54,6 +63,7 @@ nmap <F3> :TaskList<CR>
 " show directory
 nmap <F4> :NERDTreeToggle<CR>
 " <F5> bind to pep8/pycodestyle
+" autocmd FileType python nmap <Leader>= :0,$!yapf<CR>
 
 nmap <C-n> :tabnext<CR>
 nmap <C-p> :tabprevious<CR>
@@ -259,9 +269,6 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-
 """"""""""""""""""""""""""""""""""""""""
 " Set Filetypes                        "
 """"""""""""""""""""""""""""""""""""""""
-"Make NERDTree ignore non-source-code files
-let NERDTreeIgnore = ['\.pyc$']
-
 
 """"""""""""""""""""""""""""""""""""""""
 " Startup functions                    "
@@ -283,6 +290,24 @@ endfunction
 
 "Use rainbow
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+
+"Use NERDTree
+"Make NERDTree ignore non-source-code files
+let g:NERDTreeIgnore = ['\.pyc$', '__pycache__']
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '→'
+let g:NERDTreeDirArrowCollapsible = '↓'
+
+"Use syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_quiet_messages = {'level': 'warning'}
+let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_loc_list_height=5
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
 
 "Use vim-markdown
 let g:vim_markdown_folding_style_pythonic = 1
