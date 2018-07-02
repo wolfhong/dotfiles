@@ -17,20 +17,21 @@ git submodule add https://github.com/msanders/snipmate.vim.git bundle/snipmate
 # git submodule add https://github.com/mileszs/ack.vim.git bundle/ack
 # git submodule add https://github.com/sjl/gundo.vim.git bundle/gundo
 
-git submodule add https://github.com/reinh/vim-makegreen.git bundle/makegreen
 git submodule add https://github.com/vim-scripts/TaskList.vim.git bundle/tasklist
 git submodule add https://github.com/vim-scripts/The-NERD-tree.git bundle/nerdtree
-git submodule add https://github.com/klen/rope-vim.git bundle/ropevim
 git submodule add https://github.com/luochen1990/rainbow.git bundle/rainbow
 
 ###### for python ########
 git submodule add https://github.com/fs111/pydoc.vim.git bundle/pydoc
+git submodule add https://github.com/alfredodeza/pytest.vim.git bundle/py.test
 git submodule add https://github.com/vim-scripts/pep8.git bundle/pep8
 git submodule add https://github.com/mitechie/pyflakes-pathogen.git bundle/pyflakes-pathogen
-git submodule add https://github.com/alfredodeza/pytest.vim.git bundle/py.test
+# git submodule add https://github.com/klen/rope-vim.git bundle/ropevim
+# git submodule add https://github.com/python-mode/python-mode.git bundle/python-mode
+###### for golang ########
 ##########################
 
-git submodule init
-git submodule update
+# git submodule init
+# git submodule update
 git submodule foreach git submodule init
 git submodule foreach git submodule update
