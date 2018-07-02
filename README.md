@@ -1,3 +1,7 @@
+### Usage
+
+Rename this coderepo into `.vim`.
+
 ### 问题
 
 TODO: pyflakes-pathogen 在windows-10上的cmder上不生效
