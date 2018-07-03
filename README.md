@@ -9,8 +9,6 @@ TODO: pyflakes-pathogen 在windows-10上的cmder上不生效
 
 ### 使用插件说明
 
-* autoload/pathogen: [插件管理](https://github.com/tpope/vim-pathogen)
-
 * fugitive: 对于git的包装
 * git: syntax, indent, and filetype plugin files for git
 * nerdtree: 目录
@@ -23,13 +21,3 @@ TODO: pyflakes-pathogen 在windows-10上的cmder上不生效
 * pep8: python codestyle
 * pyflakes-pathogen: not work on windows-10
 * py.test: pytest测试
-
-### 未使用插件说明
-
-* surround: cs命令可以全局替换标签/双引号等对应的符号
-* minibufexpl: 一个界面上有多标签，跟tabedit功能重复了
-* makegreen: test for ruby
-* ack:
-* command-t: **requires ruby**
-* gundo: **requires y2.4+**
-* ropevim: **requires py2.7**, python语法提示

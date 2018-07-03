@@ -55,12 +55,12 @@ filetype on
 "colorscheme railscasts
 "colorscheme jellybeans
 "colorscheme monokai
-if (has('win32') || has('win95') || has('win64') || has('win16') || has('win32unix'))
+if (has('mac') || has('macunix'))
+  colorscheme monokai
+elseif (has('win32') || has('win95') || has('win64') || has('win16') || has('win32unix'))
   colorscheme vividchalk
-elseif (has('unix') || has('mac') || has('macunix'))
-  colorscheme monokai
 else
-  colorscheme monokai
+  colorscheme vividchalk
 endif
 
 """"""""""""""""""""""""""""""""""""""""
@@ -317,8 +317,12 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 "Make NERDTree ignore non-source-code files
 let g:NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeDirArrows = 1
-let g:NERDTreeDirArrowExpandable = '→'
-let g:NERDTreeDirArrowCollapsible = '↓'
+
+" bugfix for cmder: cause typographical confusion
+if (has('win32') || has('win95') || has('win64') || has('win16') || has('win32unix') || has('unix'))
+  let g:NERDTreeDirArrowExpandable = '＋'
+  let g:NERDTreeDirArrowCollapsible = '－'
+endif
 
 "Use syntastic
 set statusline+=%#warningmsg#
