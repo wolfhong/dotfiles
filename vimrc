@@ -3,13 +3,13 @@
 filetype off
 call plug#begin()
 
-" git
-Plug 'https://github.com/tpope/vim-fugitive.git'
-Plug 'https://github.com/tpope/vim-git.git'
+" git in vim
+"Plug 'https://github.com/tpope/vim-fugitive.git'
+"Plug 'https://github.com/tpope/vim-git.git'
 " press <Tab> to auto-complete
 Plug 'https://github.com/ervandew/supertab.git'
 " auto-complete for multiple languages, eg, coding def<Tab> 
-Plug 'https://github.com/msanders/snipmate.vim.git'
+" Plug 'https://github.com/msanders/snipmate.vim.git'
 
 "Plug 'https://github.com/fholgado/minibufexpl.vim.git'
 "Plug 'https://github.com/mileszs/ack.vim.git'
@@ -17,11 +17,11 @@ Plug 'https://github.com/msanders/snipmate.vim.git'
 "Plug 'https://github.com/sjl/gundo.vim.git'
 "Plug 'https://github.com/tpope/vim-repeat.git'
 "Plug 'https://github.com/tpope/vim-surround.git'
-"Plug 'https://github.com/tpope/vim-commentary.git'
+"Plug 'https://github.com/tpope/vim-commentary.git'  "comment supports
 
 Plug 'https://github.com/vim-scripts/TaskList.vim.git'
 Plug 'https://github.com/vim-scripts/The-NERD-tree.git'
-Plug 'https://github.com/luochen1990/rainbow.git'
+"Plug 'https://github.com/luochen1990/rainbow.git'
 Plug 'https://github.com/plasticboy/vim-markdown.git'
 " for undo/redo command
 Plug 'https://github.com/mbbill/undotree.git'
@@ -52,8 +52,16 @@ filetype on
 
 "colorscheme vividchalk
 "colorscheme distinguished
-"colorscheme pychimp
-colorscheme monokai
+"colorscheme railscasts
+"colorscheme jellybeans
+"colorscheme monokai
+if (has('win32') || has('win95') || has('win64') || has('win16') || has('win32unix'))
+  colorscheme vividchalk
+elseif (has('unix') || has('mac') || has('macunix'))
+  colorscheme monokai
+else
+  colorscheme monokai
+endif
 
 """"""""""""""""""""""""""""""""""""""""
 "  for hot-key mapping
