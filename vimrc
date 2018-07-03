@@ -1,15 +1,18 @@
 "use plug.vim to manage plugins
 "https://github.com/junegunn/vim-plug
+""""""""""""""""""""""Start Plug"""""""""""""""""""""""
 filetype off
 call plug#begin()
 
-" git in vim
+"git in vim
 "Plug 'https://github.com/tpope/vim-fugitive.git'
 "Plug 'https://github.com/tpope/vim-git.git'
-" press <Tab> to auto-complete
+
+"press <Tab> to auto-complete
 Plug 'https://github.com/ervandew/supertab.git'
-" auto-complete for multiple languages, eg, coding def<Tab> 
-" Plug 'https://github.com/msanders/snipmate.vim.git'
+
+"auto-complete for multiple languages, eg, coding def<Tab>
+"Plug 'https://github.com/msanders/snipmate.vim.git'
 
 "Plug 'https://github.com/fholgado/minibufexpl.vim.git'
 "Plug 'https://github.com/mileszs/ack.vim.git'
@@ -23,25 +26,47 @@ Plug 'https://github.com/vim-scripts/TaskList.vim.git'
 Plug 'https://github.com/vim-scripts/The-NERD-tree.git'
 "Plug 'https://github.com/luochen1990/rainbow.git'
 Plug 'https://github.com/plasticboy/vim-markdown.git'
-" for undo/redo command
-Plug 'https://github.com/mbbill/undotree.git'
 
-" for python
+"Plug 'https://github.com/Raimondi/delimitMate.git'
+"Plug 'https://github.com/Shougo/neocomplete.vim.git'
+"Plug 'https://github.com/dhruvasagar/vim-table-mode.git'
+"Plug 'https://github.com/honza/vim-snippets.git'
+"Plug 'https://github.com/junegunn/vim-easy-align.git'
+"Plug 'https://github.com/vim-scripts/YankRing.vim.git'
+"Plug 'https://github.com/junegunn/goyo.vim.git'
+"Plug 'https://github.com/junegunn/limelight.vim.git'
+"Plug 'https://github.com/SirVer/ultisnips.git'
+"Plug 'https://github.com/sickill/vim-monokai.git'
+"Plug 'https://github.com/mattn/emmet-vim.git'
+"Plug 'https://github.com/kshenoy/vim-signature.git'
+"Plug 'https://github.com/airblade/vim-gitgutter.git'
+"Plug 'https://github.com/scrooloose/nerdcommenter.git'
+"Plug 'https://github.com/vim-airline/vim-airline.git'
+"Plug 'https://github.com/reedes/vim-colors-pencil.git'
+"Plug 'https://github.com/maksimr/vim-jsbeautify.git'
+"Plug 'https://github.com/easymotion/vim-easymotion.git'
+Plug 'https://github.com/mbbill/undotree.git' "for undo/redo command
+
+"Press <c-d> to switch to filename only search instead of full path.
+"Press <c-r> to switch to regexp mode.
+Plug 'https://github.com/kien/ctrlp.vim.git'
+
+"for python
 Plug 'https://github.com/fs111/pydoc.vim.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
 Plug 'https://github.com/vim-syntastic/syntastic.git'
-Plug 'https://github.com/vim-scripts/pep8.git'
+"Plug 'https://github.com/vim-scripts/pep8.git'
 Plug 'https://github.com/mitechie/pyflakes-pathogen.git'
-"Plug 'https://github.com/davidhalter/jedi-vim.git' #Vim requires compiled with py
-"Plug 'https://github.com/python-mode/python-mode.git' #Vim requires py
+"Plug 'https://github.com/davidhalter/jedi-vim.git' "Vim requires compiled with py
+"Plug 'https://github.com/python-mode/python-mode.git' "Vim requires py
 
-" for golang
+"for golang
 "Plug 'https://github.com/fatih/vim-go.git', { 'do': ':GoUpdateBinaries' }
 Plug 'https://github.com/fatih/vim-go.git'
 Plug 'https://github.com/Blackrush/vim-gocode.git'
 
 call plug#end()
-"""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""End Plug"""""""""""""""""""""""""
 
 "For me, use pathogen.vim instead of plug.vim
 "execute pathogen#infect()
@@ -74,6 +99,9 @@ nmap <F2> :UndotreeToggle<CR>
 nmap <F3> :TaskList<CR>
 " show directory
 nmap <F4> :NERDTreeToggle<CR>
+" find files and folders
+nmap <F5> :CtrlP<CR>
+
 " <F5> bind to pep8/pycodestyle
 " autocmd FileType python nmap <Leader>= :0,$!yapf<CR>
 
@@ -355,3 +383,6 @@ endif
 
 "golang required
 set nocompatible              " be iMproved, required
+
+"wildignore
+set wildignore+=*.swp,*.pyc  " Windows
