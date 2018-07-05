@@ -27,9 +27,9 @@ Plug 'https://github.com/vim-scripts/The-NERD-tree.git'
 "Plug 'https://github.com/luochen1990/rainbow.git'
 Plug 'https://github.com/plasticboy/vim-markdown.git'
 
-"Plug 'https://github.com/Raimondi/delimitMate.git'
+Plug 'https://github.com/Raimondi/delimitMate.git'  "auto-completion for quotes, parens, brackets
 "Plug 'https://github.com/Shougo/neocomplete.vim.git'
-"Plug 'https://github.com/dhruvasagar/vim-table-mode.git'
+Plug 'https://github.com/dhruvasagar/vim-table-mode.git'
 "Plug 'https://github.com/honza/vim-snippets.git'
 "Plug 'https://github.com/junegunn/vim-easy-align.git'
 "Plug 'https://github.com/vim-scripts/YankRing.vim.git'
@@ -49,12 +49,13 @@ Plug 'https://github.com/mbbill/undotree.git' "for undo/redo command
 
 "Press <c-d> to switch to filename only search instead of full path.
 "Press <c-r> to switch to regexp mode.
+"Press <c-t> to open in the new tab.
 Plug 'https://github.com/kien/ctrlp.vim.git'
 
 "for python
 Plug 'https://github.com/fs111/pydoc.vim.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
-Plug 'https://github.com/vim-syntastic/syntastic.git'
+"Plug 'https://github.com/vim-syntastic/syntastic.git'
 "Plug 'https://github.com/vim-scripts/pep8.git'
 Plug 'https://github.com/mitechie/pyflakes-pathogen.git'
 "Plug 'https://github.com/davidhalter/jedi-vim.git' "Vim requires compiled with py
@@ -62,7 +63,7 @@ Plug 'https://github.com/mitechie/pyflakes-pathogen.git'
 
 "for golang
 "Plug 'https://github.com/fatih/vim-go.git', { 'do': ':GoUpdateBinaries' }
-Plug 'https://github.com/fatih/vim-go.git'
+"Plug 'https://github.com/fatih/vim-go.git'
 Plug 'https://github.com/Blackrush/vim-gocode.git'
 
 call plug#end()
@@ -353,9 +354,9 @@ if (has('win32') || has('win95') || has('win64') || has('win16') || has('win32un
 endif
 
 "Use syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 let g:syntastic_quiet_messages = {'level': 'warning'}
 let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_loc_list_height=5
@@ -386,3 +387,6 @@ set nocompatible              " be iMproved, required
 
 "wildignore
 set wildignore+=*.swp,*.pyc  " Windows
+
+"ctrlp
+let g:ctrlp_map = ''  "cancel default mapping <c-p> in ctrlp, for conflict
