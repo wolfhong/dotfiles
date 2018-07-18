@@ -55,9 +55,10 @@ Plug 'https://github.com/kien/ctrlp.vim.git'
 "for python
 Plug 'https://github.com/fs111/pydoc.vim.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
-"Plug 'https://github.com/vim-syntastic/syntastic.git'
+Plug 'https://github.com/vim-syntastic/syntastic.git'
+"Plug 'https://github.com/python-mode/python-mode', { 'branch': 'develop' }
 "Plug 'https://github.com/vim-scripts/pep8.git'
-Plug 'https://github.com/mitechie/pyflakes-pathogen.git'
+"Plug 'https://github.com/mitechie/pyflakes-pathogen.git'
 "Plug 'https://github.com/davidhalter/jedi-vim.git' "Vim requires compiled with py
 "Plug 'https://github.com/python-mode/python-mode.git' "Vim requires py
 
@@ -101,7 +102,7 @@ nmap <F3> :TaskList<CR>
 " show directory
 nmap <F4> :NERDTreeToggle<CR>
 " find files and folders
-nmap <F5> :CtrlP<CR>
+nmap <F6> :CtrlP<CR>
 
 " <F5> bind to pep8/pycodestyle
 " autocmd FileType python nmap <Leader>= :0,$!yapf<CR>
@@ -119,7 +120,7 @@ nmap zm I# -*- coding: utf-8 -*-<CR>
 "vs for vsplit windows
 "sp for split windows
 
-set clipboard=unnamed
+set clipboard=
 set foldmethod=indent
 set foldlevel=99
 
@@ -354,18 +355,18 @@ if (has('win32') || has('win95') || has('win64') || has('win16') || has('win32un
 endif
 
 "Use syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 let g:syntastic_quiet_messages = {'level': 'warning'}
 let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_loc_list_height=5
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-"syntastic for python
-let g:syntastic_python_checker_args = "--max-line-length=90"
-let g:syntastic_python_checker_args = "pep8_max_line_length=90"
+let g:syntastic_python_flake8_args="--max-line-length=130"
+
+" pylint in python-mode
+let g:syntastic_python_pylint_post_args="--max-line-length=130"
 
 
 "Use vim-markdown
