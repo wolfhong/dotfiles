@@ -64,8 +64,10 @@ Plug 'https://github.com/vim-syntastic/syntastic.git'
 
 "for golang
 "Plug 'https://github.com/fatih/vim-go.git', { 'do': ':GoUpdateBinaries' }
-"Plug 'https://github.com/fatih/vim-go.git'
+Plug 'https://github.com/fatih/vim-go.git'
 Plug 'https://github.com/Blackrush/vim-gocode.git'
+Plug 'https://github.com/majutsushi/tagbar.git'
+Plug 'https://github.com/dgryski/vim-godef.git'
 
 call plug#end()
 """"""""""""""""""""""End Plug"""""""""""""""""""""""""
@@ -103,6 +105,7 @@ nmap <F3> :TaskList<CR>
 nmap <F4> :NERDTreeToggle<CR>
 " find files and folders
 nmap <F6> :CtrlP<CR>
+nmap <F9> :TagbarToggle<CR>
 
 " <F5> bind to pep8/pycodestyle
 " autocmd FileType python nmap <Leader>= :0,$!yapf<CR>
@@ -363,10 +366,18 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-let g:syntastic_python_flake8_args="--max-line-length=130"
+let g:syntastic_python_flake8_args="--max-line-length=140"
+let g:syntastic_python_checkers=["flake8"]
+let g:syntastic_python_checker_args="--ignore=E226,E402"
+let g:pymode_lint_ignore="E226,E402"
 
 " pylint in python-mode
-let g:syntastic_python_pylint_post_args="--max-line-length=130"
+let g:syntastic_python_pylint_post_args="--max-line-length=140"
+
+" ignore error
+" [E226] = missing whitespace around arithmetic operator [E226]
+" [E402] = 
+let g:pep8_ignore="E226,E402"
 
 
 "Use vim-markdown
@@ -391,3 +402,11 @@ set wildignore+=*.swp,*.pyc  " Windows
 
 "ctrlp
 let g:ctrlp_map = ''  "cancel default mapping <c-p> in ctrlp, for conflict
+
+
+
+"go函数追踪
+autocmd FileType go nnoremap <buffer> gd :call GodefUnderCursor()<cr>
+autocmd FileType go nnoremap <buffer> <C-]> :call GodefUnderCursor()<cr>
+let g:godef_split=2    "左右打开新窗口的时候
+let g:godef_same_file_in_same_window=1    "函数在同一个文件中时不需要打开新窗口

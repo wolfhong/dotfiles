@@ -1,4 +1,4 @@
-exit 1  # departed, use plug.vim instead of pathogen.vim
+# exit 1  # departed, use plug.vim instead of pathogen.vim
 
 git clone --recursive https://github.com/tpope/vim-fugitive.git bundle/fugitive
 git clone --recursive https://github.com/tpope/vim-git.git bundle/git
