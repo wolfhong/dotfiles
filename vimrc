@@ -27,7 +27,15 @@ Plug 'https://github.com/vim-scripts/The-NERD-tree.git'
 "Plug 'https://github.com/luochen1990/rainbow.git'
 Plug 'https://github.com/plasticboy/vim-markdown.git'
 
-Plug 'https://github.com/Raimondi/delimitMate.git'  "auto-completion for quotes, parens, brackets
+"Plug 'https://github.com/iamcco/mathjax-support-for-mkdp.git'
+"Plug 'https://github.com/iamcco/markdown-preview.vim.git'
+
+Plug 'https://github.com/iamcco/markdown-preview.nvim.git', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+"Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+
+"auto-completion for quotes, parens, brackets
+Plug 'https://github.com/Raimondi/delimitMate.git'
+
 "Plug 'https://github.com/Shougo/neocomplete.vim.git'
 Plug 'https://github.com/dhruvasagar/vim-table-mode.git'
 "Plug 'https://github.com/honza/vim-snippets.git'
@@ -103,6 +111,8 @@ nmap <F2> :UndotreeToggle<CR>
 nmap <F3> :TaskList<CR>
 " show directory
 nmap <F4> :NERDTreeToggle<CR>
+" markdown
+nmap <F5> :MarkdownPreview<CR>
 " find files and folders
 nmap <F6> :CtrlP<CR>
 nmap <F9> :TagbarToggle<CR>
@@ -144,6 +154,7 @@ set noswapfile
 """"""""""""""""""""""""""""""""""""""""
 
 "Use spaces instead of tabs
+"Use :retab to replace all tab with space
 set expandtab
 
 "Be smart when using tabs
@@ -368,16 +379,15 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_flake8_args="--max-line-length=140"
 let g:syntastic_python_checkers=["flake8"]
-let g:syntastic_python_checker_args="--ignore=E226,E402"
-let g:pymode_lint_ignore="E226,E402"
+let g:syntastic_python_checker_args="--ignore=E226,E402,E741"
+let g:pymode_lint_ignore="E226,E402,E741"
 
 " pylint in python-mode
 let g:syntastic_python_pylint_post_args="--max-line-length=140"
 
 " ignore error
 " [E226] = missing whitespace around arithmetic operator [E226]
-" [E402] = 
-let g:pep8_ignore="E226,E402"
+let g:pep8_ignore="E226,E402,E741"
 
 
 "Use vim-markdown
@@ -410,3 +420,82 @@ autocmd FileType go nnoremap <buffer> gd :call GodefUnderCursor()<cr>
 autocmd FileType go nnoremap <buffer> <C-]> :call GodefUnderCursor()<cr>
 let g:godef_split=2    "左右打开新窗口的时候
 let g:godef_same_file_in_same_window=1    "函数在同一个文件中时不需要打开新窗口
+
+
+" markdown相关的
+" set to 1, nvim will open the preview window after entering the markdown buffer
+" default: 0
+let g:mkdp_auto_start = 0
+" set to 1, the nvim will auto close current preview window when change
+" from markdown buffer to another buffer
+" default: 1
+let g:mkdp_auto_close = 1
+" set to 1, the vim will refresh markdown when save the buffer or
+" leave from insert mode, default 0 is auto refresh markdown as you edit or
+" move the cursor
+" default: 0
+let g:mkdp_refresh_slow = 0
+" set to 1, the MarkdownPreview command can be use for all files,
+" by default it can be use in markdown file
+" default: 0
+let g:mkdp_command_for_global = 0
+" set to 1, preview server available to others in your network
+" by default, the server listens on localhost (127.0.0.1)
+" default: 0
+let g:mkdp_open_to_the_world = 0
+" use custom IP to open preview page
+" useful when you work in remote vim and preview on local browser
+" more detail see: https://github.com/iamcco/markdown-preview.nvim/pull/9
+" default empty
+let g:mkdp_open_ip = ''
+" specify browser to open preview page
+" default: ''
+let g:mkdp_browser = ''
+" set to 1, echo preview page url in command line when open preview page
+" default is 0
+let g:mkdp_echo_preview_url = 0
+" a custom vim function name to open preview page
+" this function will receive url as param
+" default is empty
+let g:mkdp_browserfunc = ''
+" options for markdown render
+" mkit: markdown-it options for render
+" katex: katex options for math
+" uml: markdown-it-plantuml options
+" maid: mermaid options
+" disable_sync_scroll: if disable sync scroll, default 0
+" sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
+"   middle: mean the cursor position alway show at the middle of the preview page
+"   top: mean the vim top viewport alway show at the top of the preview page
+"   relative: mean the cursor position alway show at the relative positon of the preview page
+" hide_yaml_meta: if hide yaml metadata, default is 1
+" sequence_diagrams: js-sequence-diagrams options
+" content_editable: if enable content editable for preview page, default: v:false
+" disable_filename: if disable filename header for preview page, default: 0
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {},
+    \ 'flowchart_diagrams': {},
+    \ 'content_editable': v:false,
+    \ 'disable_filename': 0
+    \ }
+" use a custom markdown style must be absolute path
+" like '/Users/username/markdown.css' or expand('~/markdown.css')
+let g:mkdp_markdown_css = ''
+" use a custom highlight style must absolute path
+" like '/Users/username/highlight.css' or expand('~/highlight.css')
+let g:mkdp_highlight_css = ''
+" use a custom port to start server or random for empty
+let g:mkdp_port = ''
+" preview page title
+" ${name} will be replace with the file name
+let g:mkdp_page_title = '「${name}」'
+" recognized filetypes
+" these filetypes will have MarkdownPreview... commands
+let g:mkdp_filetypes = ['markdown']
