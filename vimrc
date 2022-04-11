@@ -29,7 +29,6 @@ Plug 'https://github.com/plasticboy/vim-markdown.git'
 
 "Plug 'https://github.com/iamcco/mathjax-support-for-mkdp.git'
 "Plug 'https://github.com/iamcco/markdown-preview.vim.git'
-
 Plug 'https://github.com/iamcco/markdown-preview.nvim.git', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 "Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
@@ -63,8 +62,9 @@ Plug 'https://github.com/kien/ctrlp.vim.git'
 "for python
 Plug 'https://github.com/fs111/pydoc.vim.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
-Plug 'https://github.com/vim-syntastic/syntastic.git'
+"Plug 'https://github.com/vim-syntastic/syntastic.git'
 "Plug 'https://github.com/python-mode/python-mode', { 'branch': 'develop' }
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 "Plug 'https://github.com/vim-scripts/pep8.git'
 "Plug 'https://github.com/mitechie/pyflakes-pathogen.git'
 "Plug 'https://github.com/davidhalter/jedi-vim.git' "Vim requires compiled with py
@@ -87,6 +87,7 @@ call plug#end()
 "call pathogen#helptags()
 filetype on
 
+"select color-theme
 "colorscheme vividchalk
 "colorscheme distinguished
 "colorscheme railscasts
@@ -130,8 +131,8 @@ nmap zm I# -*- coding: utf-8 -*-<CR>
 "nmap zp :MBEbb<CR>
 "nmap zn :MBEbf<CR>
 
-"vs for vsplit windows
-"sp for split windows
+"press vs for vsplit windows
+"press sp for split windows
 
 set clipboard=
 set foldmethod=indent
@@ -369,25 +370,29 @@ if (has('win32') || has('win95') || has('win64') || has('win16') || has('win32un
 endif
 
 "Use syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_quiet_messages = {'level': 'warning'}
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_flake8_args="--max-line-length=140"
-let g:syntastic_python_checkers=["flake8"]
-let g:syntastic_python_checker_args="--ignore=E226,E402,E741"
-let g:pymode_lint_ignore="E226,E402,E741"
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_quiet_messages = {'level': 'warning'}
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 0
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_python_flake8_args="--max-line-length=140"
+"let g:syntastic_python_checkers=["flake8"]
+"let g:syntastic_python_checker_args="--ignore=E226,E402,E741"
+let g:pymode_options_max_line_length=180
+let g:pymode_lint_options_pep8={'max_line_length': g:pymode_options_max_line_length}
+let g:pymode_options_colorcolumn = 1
+let g:pymode_lint_ignore = ['C901', 'E302']
+"let g:pymode_lint_select = []
 
 " pylint in python-mode
-let g:syntastic_python_pylint_post_args="--max-line-length=140"
+" let g:syntastic_python_pylint_post_args="--max-line-length=140"
 
 " ignore error
 " [E226] = missing whitespace around arithmetic operator [E226]
-let g:pep8_ignore="E226,E402,E741"
+" let g:pep8_ignore="E226,E402,E741"
 
 
 "Use vim-markdown
