@@ -383,9 +383,17 @@ endif
 "let g:syntastic_python_checker_args="--ignore=E226,E402,E741"
 let g:pymode_options_max_line_length=180
 let g:pymode_lint_options_pep8={'max_line_length': g:pymode_options_max_line_length}
-let g:pymode_options_colorcolumn = 1
-let g:pymode_lint_ignore = ['C901', 'E302']
+let g:pymode_options_colorcolumn = 0
+let g:pymode_lint_ignore = ['C901', 'E302', 'E128', 'E261', 'E266', 'E305', 'E402', 'E701', 'E306', 'E731']
 "let g:pymode_lint_select = []
+"E128 continuation line under-indented for visual indent [pep8]
+"E261 at least two spaces before inline comment [pep8]
+"E266 too many leading '#' for block comment [pep8]
+"E305 expected 2 blank lines after class or function definition, found 1 [pep8]
+"E402 module level import not at top of file [pep8]
+"E701 multiple statements on one line (colon) [pep8]
+"E306 expected 1 blank line before a nested definition, found 0 [pep8]
+"E731 do not assign a lambda expression,
 
 " pylint in python-mode
 " let g:syntastic_python_pylint_post_args="--max-line-length=140"
