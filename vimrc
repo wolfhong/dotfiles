@@ -4,15 +4,12 @@
 filetype off
 call plug#begin()
 
-"git in vim
 "Plug 'https://github.com/tpope/vim-fugitive.git'
 "Plug 'https://github.com/tpope/vim-git.git'
+Plug 'https://github.com/ervandew/supertab.git'    "press <Tab> to auto-complete
 
-"press <Tab> to auto-complete
-Plug 'https://github.com/ervandew/supertab.git'
-
-"auto-complete for multiple languages, eg, coding def<Tab>
-"Plug 'https://github.com/msanders/snipmate.vim.git'
+" NOTE: auto-complete for multiple languages, eg, coding def<Tab>
+"Plug 'https://github.com/msanders/snipmate.vim.git'  
 
 "Plug 'https://github.com/fholgado/minibufexpl.vim.git'
 "Plug 'https://github.com/mileszs/ack.vim.git'
@@ -28,11 +25,11 @@ Plug 'https://github.com/vim-scripts/The-NERD-tree.git'
 Plug 'https://github.com/plasticboy/vim-markdown.git'
 
 "Plug 'https://github.com/iamcco/mathjax-support-for-mkdp.git'
-"Plug 'https://github.com/iamcco/markdown-preview.vim.git'
-Plug 'https://github.com/iamcco/markdown-preview.nvim.git', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-"Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
-"auto-completion for quotes, parens, brackets
+" NOTE: markdown-preview needs nodejs, npm
+Plug 'https://github.com/iamcco/markdown-preview.nvim.git', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+" NOTE: auto-completion for quotes, parens, brackets
 Plug 'https://github.com/Raimondi/delimitMate.git'
 
 "Plug 'https://github.com/Shougo/neocomplete.vim.git'
@@ -52,14 +49,14 @@ Plug 'https://github.com/dhruvasagar/vim-table-mode.git'
 "Plug 'https://github.com/reedes/vim-colors-pencil.git'
 "Plug 'https://github.com/maksimr/vim-jsbeautify.git'
 "Plug 'https://github.com/easymotion/vim-easymotion.git'
-Plug 'https://github.com/mbbill/undotree.git' "for undo/redo command
+Plug 'https://github.com/mbbill/undotree.git'  "for undo/redo command
 
 "Press <c-d> to switch to filename only search instead of full path.
 "Press <c-r> to switch to regexp mode.
 "Press <c-t> to open in the new tab.
 Plug 'https://github.com/kien/ctrlp.vim.git'
 
-"for python
+" NOTE: for python
 Plug 'https://github.com/fs111/pydoc.vim.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
 "Plug 'https://github.com/vim-syntastic/syntastic.git'
@@ -68,9 +65,8 @@ Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 "Plug 'https://github.com/vim-scripts/pep8.git'
 "Plug 'https://github.com/mitechie/pyflakes-pathogen.git'
 "Plug 'https://github.com/davidhalter/jedi-vim.git' "Vim requires compiled with py
-"Plug 'https://github.com/python-mode/python-mode.git' "Vim requires py
 
-"for golang
+" NOTE: for golang: https://go.dev/doc/install/source
 "Plug 'https://github.com/fatih/vim-go.git', { 'do': ':GoUpdateBinaries' }
 Plug 'https://github.com/fatih/vim-go.git'
 Plug 'https://github.com/Blackrush/vim-gocode.git'
@@ -125,8 +121,6 @@ nmap <C-n> :tabnext<CR>
 nmap <C-p> :tabprevious<CR>
 
 nmap zm I# -*- coding: utf-8 -*-<CR>
-"nmap zj :RopeGotoDefinition<CR>
-"nmap zr :RopeRename<CR>
 
 "nmap zp :MBEbb<CR>
 "nmap zn :MBEbf<CR>
@@ -347,9 +341,6 @@ function! Startup()
     Tagbar
 endfunction
 
-"Python flake8 check
-"autocmd FileType python map <buffer> zfp :call Flake8()<CR>
-
 
 """""""""""""""""""""""""""""""""""""
 " plugins config
@@ -369,23 +360,8 @@ if (has('win32') || has('win95') || has('win64') || has('win16') || has('win32un
   let g:NERDTreeDirArrowCollapsible = '－'
 endif
 
-"Use syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"let g:syntastic_quiet_messages = {'level': 'warning'}
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 0
-"let g:syntastic_check_on_open = 0
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_python_flake8_args="--max-line-length=140"
-"let g:syntastic_python_checkers=["flake8"]
-"let g:syntastic_python_checker_args="--ignore=E226,E402,E741"
-let g:pymode_options_max_line_length=180
-let g:pymode_lint_options_pep8={'max_line_length': g:pymode_options_max_line_length}
-let g:pymode_options_colorcolumn = 0
-let g:pymode_lint_ignore = ['C901', 'E302', 'E128', 'E261', 'E266', 'E305', 'E402', 'E701', 'E306', 'E731']
-"let g:pymode_lint_select = []
+
+" NOTE: about pymode
 "E128 continuation line under-indented for visual indent [pep8]
 "E261 at least two spaces before inline comment [pep8]
 "E266 too many leading '#' for block comment [pep8]
@@ -394,16 +370,15 @@ let g:pymode_lint_ignore = ['C901', 'E302', 'E128', 'E261', 'E266', 'E305', 'E40
 "E701 multiple statements on one line (colon) [pep8]
 "E306 expected 1 blank line before a nested definition, found 0 [pep8]
 "E731 do not assign a lambda expression,
-
-" pylint in python-mode
-" let g:syntastic_python_pylint_post_args="--max-line-length=140"
-
-" ignore error
-" [E226] = missing whitespace around arithmetic operator [E226]
-" let g:pep8_ignore="E226,E402,E741"
+let g:pymode_options_max_line_length=180
+let g:pymode_lint_options_pep8={'max_line_length': g:pymode_options_max_line_length}
+let g:pymode_options_colorcolumn = 0
+let g:pymode_lint_ignore = ['C901', 'E302', 'E128', 'E261', 'E266', 'E305', 'E402', 'E701', 'E306', 'E731']
+"let g:pymode_lint_select = []
 
 
 "Use vim-markdown
+let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_folding_style_pythonic = 1
 let g:vim_markdown_override_foldtext = 0
 let g:vim_markdown_frontmatter = 1
@@ -427,7 +402,6 @@ set wildignore+=*.swp,*.pyc  " Windows
 let g:ctrlp_map = ''  "cancel default mapping <c-p> in ctrlp, for conflict
 
 
-
 "go函数追踪
 autocmd FileType go nnoremap <buffer> gd :call GodefUnderCursor()<cr>
 autocmd FileType go nnoremap <buffer> <C-]> :call GodefUnderCursor()<cr>
@@ -435,7 +409,7 @@ let g:godef_split=2    "左右打开新窗口的时候
 let g:godef_same_file_in_same_window=1    "函数在同一个文件中时不需要打开新窗口
 
 
-" markdown相关的
+" NOTE: MarkdownPreview
 " set to 1, nvim will open the preview window after entering the markdown buffer
 " default: 0
 let g:mkdp_auto_start = 0
