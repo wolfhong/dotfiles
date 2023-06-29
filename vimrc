@@ -373,7 +373,7 @@ endif
 let g:pymode_options_max_line_length=180
 let g:pymode_lint_options_pep8={'max_line_length': g:pymode_options_max_line_length}
 let g:pymode_options_colorcolumn = 0
-let g:pymode_lint_ignore = ['C901', 'E302', 'E128', 'E261', 'E266', 'E305', 'E402', 'E701', 'E306', 'E731']
+let g:pymode_lint_ignore = ['C901', 'E302', 'E128', 'E261', 'E266', 'E305', 'E402', 'E701', 'E306', 'E731', 'E741']
 "let g:pymode_lint_select = []
 
 
